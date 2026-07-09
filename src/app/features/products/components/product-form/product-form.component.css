@@ -1,0 +1,128 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f5f7f9;
+  min-height: calc(100vh - 60px);
+}
+
+.form-card {
+  background: white;
+  width: 100%;
+  max-width: 700px;
+  padding: 32px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border-radius: 4px;
+}
+
+.form-title {
+  text-align: center;
+  color: #1a237e;
+  font-size: 24px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: #e0e0e0;
+  margin-bottom: 32px;
+}
+
+.form-row {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:disabled {
+  background-color: #f0f0f0;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #ffeb3b;
+}
+
+.form-group input.is-invalid {
+  border-color: #d32f2f;
+}
+
+.error-msg {
+  color: #d32f2f;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.btn-secondary {
+  padding: 12px 32px;
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: #d5d5d5;
+}
+
+.btn-primary {
+  padding: 12px 32px;
+  background-color: #ffeb3b; /* Amarillo según diseño base */
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

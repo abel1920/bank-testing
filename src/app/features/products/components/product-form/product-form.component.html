@@ -1,0 +1,106 @@
+<div class="form-container">
+  <div class="form-card">
+    <h1 class="form-title">Formulario de Registro</h1>
+    <hr class="divider" />
+    
+    <form [formGroup]="myForm" (ngSubmit)="saveProduct()">
+      
+      <div class="form-row">
+        <!-- Campo ID -->
+        <div class="form-group">
+          <label for="id">ID</label>
+          <input 
+            type="text" 
+            id="id" 
+            formControlName="id" 
+            [ngClass]="{'is-invalid': isValidField('id')}"
+            [attr.disabled]="isEditMode() ? true : null"
+          >
+          @if (isValidField('id')) {
+            <span class="error-msg">{{ getFieldError('id') }}</span>
+          }
+        </div>
+
+        <!-- Campo Nombre -->
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input 
+            type="text" 
+            id="name" 
+            formControlName="name" 
+            [ngClass]="{'is-invalid': isValidField('name')}"
+          >
+          @if (isValidField('name')) {
+            <span class="error-msg">{{ getFieldError('name') }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-row">
+        <!-- Campo Descripción -->
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <input 
+            type="text" 
+            id="description" 
+            formControlName="description" 
+            [ngClass]="{'is-invalid': isValidField('description')}"
+          >
+          @if (isValidField('description')) {
+            <span class="error-msg">{{ getFieldError('description') }}</span>
+          }
+        </div>
+
+        <!-- Campo Logo -->
+        <div class="form-group">
+          <label for="logo">Logo</label>
+          <input 
+            type="text" 
+            id="logo" 
+            formControlName="logo" 
+            [ngClass]="{'is-invalid': isValidField('logo')}"
+          >
+          @if (isValidField('logo')) {
+            <span class="error-msg">{{ getFieldError('logo') }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="form-row">
+        <!-- Campo Fecha Liberación -->
+        <div class="form-group">
+          <label for="date_release">Fecha Liberación</label>
+          <input 
+            type="date" 
+            id="date_release" 
+            formControlName="date_release" 
+            [ngClass]="{'is-invalid': isValidField('date_release')}"
+          >
+          @if (isValidField('date_release')) {
+            <span class="error-msg">{{ getFieldError('date_release') }}</span>
+          }
+        </div>
+
+        <!-- Campo Fecha Revisión -->
+        <div class="form-group">
+          <label for="date_revision">Fecha Revisión</label>
+          <!-- Este campo está deshabilitado por lógica de negocio -->
+          <input 
+            type="date" 
+            id="date_revision" 
+            formControlName="date_revision" 
+          >
+        </div>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="form-actions">
+        <button type="button" class="btn-secondary" (click)="resetForm()">Reiniciar</button>
+        <button type="submit" class="btn-primary" [disabled]="myForm.invalid || isSaving()">
+          {{ isSaving() ? 'Enviando...' : 'Enviar' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://googleapis.com');
+
+/* 2. Aplícala a toda la aplicación */
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+}
+main{
+
+    max-width:1200px;
+
+    margin:40px auto;
+
+    padding:20px;
+
+}

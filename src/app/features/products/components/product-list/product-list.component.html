@@ -1,0 +1,87 @@
+<div class="list-page">
+<div class="list-container">
+
+  <!-- Buscador -->
+  <div class="search-bar">
+    <input #searchInput type="text" placeholder="Search" [value]="searchProduct()"
+      (input)="onSearch(searchInput.value)" />
+    <button routerLink="/productos/nuevo" class="btn-primary">Agregar</button>
+  </div>
+
+  <!-- Contenedor principal -->
+  <div class="table-card">
+
+    <!-- IF: Si está cargando -->
+    @if (isLoading()) {
+    <p>Cargando productos...</p>
+    }
+    <!-- ELSE: Si ya cargó -->
+    @else {
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Logo</th>
+          <th>Nombre del producto</th>
+          <th>Descripción</th>
+          <th>Fecha de liberación</th>
+          <th>Fecha de reestructuración</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of paginatedProducts(); track product.id) {
+        <tr>
+          <td>
+            <span class="product-initials">{{ product.id.substring(0, 2) }}</span>
+          </td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.date_release }}</td>
+          <td>{{ product.date_revision }}</td>
+          <td>
+            <div class="menu-container">
+              <!-- Checkbox oculto que controla el menú -->
+              <input type="checkbox" [id]="'menu-toggle-' + product.id" class="toggle-input menu-toggle-checkbox" />
+              <label [for]="'menu-toggle-' + product.id" class="menu-button">⋮</label>
+
+              <ul class="dropdown-menu">
+                <li><a [routerLink]="['/productos/editar', product.id]" class="menu-item">Editar</a></li>
+                <li>
+                  <input type="checkbox" [id]="'modal-toggle-' + product.id" class="toggle-input modal-toggle-checkbox" />
+                  <label [for]="'modal-toggle-' + product.id" class="menu-item">Eliminar</label>
+
+                  <div class="modal-overlay">
+                    <div class="modal-content">
+                      <h3>¿Estas seguro de eliminar el producto {{product.id}}?</h3>
+                      <div class="modal-actions">
+                        <label [for]="'modal-toggle-' + product.id" class="close-button">Cancelar</label>
+                        <label [for]="'modal-toggle-' + product.id" class="confirm-button" (click)="deleteProduct(product.id)">Confirmar</label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        } @empty {
+        <tr>
+          <td colspan="6" class="text-center">No hay productos registrados</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="footer-info">
+      <span>{{ filteredProducts().length }} Resultados</span>
+      <select (change)="onChangePageSize($event)">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+    }
+
+  </div>
+</div>
+</div>
