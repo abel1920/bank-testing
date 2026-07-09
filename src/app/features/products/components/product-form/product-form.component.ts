@@ -59,7 +59,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isEditMode.set(true);
-      this.myForm.get('id')?.disable(); // En edición no se puede cambiar el ID
+      this.myForm.get('id')?.disable();
       //consulta a la endpoint
       this.productService.getProducts().subscribe(res => {
         const product = res.data.find(p => p.id === id);
@@ -110,7 +110,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     }
 
     this.isSaving.set(true);
-    const rawValue = this.myForm.getRawValue(); // Incluye campos disabled como el ID en modo edición
+    const rawValue = this.myForm.getRawValue();
     const product: Product = {
       id: rawValue.id,
       name: rawValue.name,
@@ -147,7 +147,6 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   resetForm() {
     if (this.isEditMode()) {
-      // En modo edición solo reseteamos los campos editables
       const idValue = this.myForm.getRawValue().id;
       this.myForm.reset({ id: idValue });
     } else {
